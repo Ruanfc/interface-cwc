@@ -1,0 +1,172 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+#main{
+    height: 100vh;
+    width: 100vw;
+    /* background: gray; */
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+
+}
+
+.first-panel{
+    width:20%;
+    height: 100vh;
+    min-height: 100%;
+    max-height: 100%;
+    min-width: 15%;
+    max-width: 90%;
+    /* overflow: scroll; */
+}
+
+.scrollbar {
+    overflow-y: scroll; /* Add the ability to scroll */
+    overflow-x: hidden;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.second-panel{
+    flex:1;
+    width:80%;
+    height: 100vh;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#placeholder{
+    height: 100%;
+    width: 100%;
+    /* background-color: yellow; */
+    border: 3px solid green;
+}
+
+.bar{
+    width:5px;
+    height: 100 vh;
+    background-color:black;
+    cursor: col-resize;
+    }
+
+/* @media only screen and (orientation: portrait){ */
+@media (orientation:portrait){
+#main{
+    flex-direction: column-reverse;
+}
+.first-panel{
+    height:40%;
+    width: 100vw;
+    min-height: 15%;
+    max-height: 90%;
+    min-width: 100%;
+    max-width: 100%;
+}
+.second-panel{
+    height:60%;
+    width: 100vw;
+    /* flex-direction: row; */
+}
+#placeholder{
+    background-color: orange;
+}
+.bar{
+    height:5px;
+    width: 100vw;
+    cursor: row-resize;
+    }
+}
+
+ /* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 5px 5px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+.flex-vertical{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-horizontal{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type="text"]{
+    min-width: 10vh;
+    max-width: 20vh;
+    margin-right: 10px;
+}
+
+.panel>[id^="serial-"], .center{
+    text-align:center;
+    /* margin:0; */
+    display:block;
+    margin:auto;
+}
+
+#server-container{
+    max-width: 200px;
+    margin: auto;
+}
+img{
+    width:100%;
+    object-fit: contain;
+}
+
+/* .inline-input{ */
+/*     width:5em; */
+/*     display: inline; */
+/* } */
+
+#number-input{
+    max-width: 5em;
+    min-width: 20px;
+}
+
+/* Button styling */
+.fcc-btn {
+  background-color: #199319;
+  color: white;
+  padding: 15px 25px;
+  text-decoration: none;
+}
+
+.fcc-btn:hover {
+  background-color: #223094;
+}

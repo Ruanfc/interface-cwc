@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" >
+  <title>Interface CWC</title>
+  <link rel="stylesheet" href="styles.css" type="text/css" media="screen" />
+  <script src="thirdParty/chart.js"></script>
+  <script src="thirdParty/download.js"></script>
+</head>
+  <body>
+  <div id="main" >
+    <div id="options-container" class= "first-panel scrollbar" >
+
+  <button id="connectivity" class="accordion"> Connectivity </button>
+  <div class="panel">
+    <p id="serial-string">Serial port:</p>
+    <select id="serial-selector">
+        <!-- <option> teste </option> -->
+    </select>
+    <div id="server-container" class = "flex-vertical">
+      <p id="server-string" class="center">
+        Server address:
+      </p>
+      <img src="./qrcode.png" alt="localhost:3000">
+      <button id="run-stop">Run</button>
+    </div>
+  </div>
+
+  <button id="motor-values" class="accordion"> Motor values </button>
+  <div class="panel">
+    <form method="post" id="motors-form" action="">
+      <div class = "flex-vertical">
+        <!-- IMPELLER -->
+        <div class = "flex-horizontal">
+          <label for="impeller-submit"> Impeller: </label>
+          <label for="impeller-text"> 0 rps </label>
+        </div>
+        <div class = "flex-horizontal">
+          <input type="text" id="impeller-text" value="" placeholder="Insert value" />
+          <input type="submit" id="impeller-submit" value="Send" />
+        </div>
+        <!-- ROTOR -->
+        <div class = "flex-horizontal">
+          <label for="rotor-submit"> Rotor: </label>
+          <label for="rotor-text"> 0 rps </label>
+        </div>
+        <div class = "flex-horizontal">
+          <input type="text" id="rotor-text" value="" placeholder="Insert value" />
+          <input type="submit" id="rotor-submit" value="Send" />
+        </div>
+        <!-- END -->
+      </div>
+    </form>
+  </div>
+
+  <button id="record" class="accordion"> Record </button>
+  <div class="panel">
+    <p class="center"> Type of output data: </p>
+    <button class="center fcc-btn" id="csv-button" > Save as csv </button>
+    <button class="center fcc-btn" id="png-button" > Save as png </button>
+  </div>
+
+  <button id="select-data" class="accordion"> Select data </button>
+  <div class="panel">
+    <div class="flex-horizontal">
+      <label> Plot panels: </label>
+      <input id="number-input" class="inline-input" type="number" name="panelNums" value="1" maxlength="1" />
+    </div>
+    <div class="flex-vertical">
+      <div class="center">
+        <button>botão 1</button>
+      </div>
+      <div class="center">
+        <button>botão 2</button>
+      </div>
+      <div class="center">
+        <button>botão 3</button>
+      </div>
+    </div>
+  </div>
+
+
+      </div>
+    <div id="dragger" class="bar"> </div>
+    <div id="chart-container" class = "second-panel">
+      <!-- <div id="placeholder">  </div> -->
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+  <!-- Your app's source files -->
+  <script src="serial.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript" src="myChart.js"></script>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>
