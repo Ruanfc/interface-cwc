@@ -1,15 +1,29 @@
-const {SerialPort} = require('serialport');
+const SerialPort = require('serialport')
+const Readline = require('@serialport/parser-readline')
 
-const serialport = new SerialPort({
-    path: '/dev/pts/1',
-    baudRate: 9600,
-});
+
+var port;
+function connect(){
+    port = new SerialPort({
+        path: '/dev/pts/1',
+        baudRate: document.getElementById("baudrate-selector").innerHTML,
+    });
+};
+function close()
+{
+    serialport.close(() => {
+     connected = false
+     sh.success('disconnected.')
+     em.emit('disconnect')
+     resolve()
+    });
+}
 
 // Inicialize serialport select
 var serialSelect = document.getElementById('serial-selector');
 
 function checkPorts(){
-    SerialPort.list().then((ports) =>
+    SerialPort.SerialPort.list().then((ports) =>
     {
         // Remove every Children
         while (ports.firstChild) {
@@ -37,10 +51,12 @@ runBtn.addEventListener("click", function(){
     {
         runBtn.innerHTML = "Stop";
         // Initialize data capture
+        connect();
     }else
     {
         runBtn.innerHTML = "Run";
         // Stops data capture
+        close();
     }
 });
 
@@ -64,3 +80,24 @@ runBtn.addEventListener("click", function(){
 // }
 
 var timerSerial = setInterval(checkPorts, 10000);
+
+//Todo:
+// serialport.on('data', function (data) {
+//   console.log('Data: ' + data);
+// });
+
+
+// const parser = port.pipe(new Readline());
+
+// const parser = new Readline();
+// port.pipe(parser);
+
+// parser.on('data', (line) =>
+//     {
+//         console.log(line);
+//         // window.graph1.incData(Number(line));
+//         // window.graph2.incData(100 - Number(line));
+//     });
+
+const parser = port.pipe(new Readline({ delimiter: '\r\n' }))
+parser.on('data', console.log)

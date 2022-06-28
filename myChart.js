@@ -71,3 +71,12 @@ csvBtn.addEventListener("click", function(){
     console.log('Saved!');
   });
 });
+
+//equal_x_and_y
+function equal_x_and_y(x, y)
+{
+  if (x.length() > y.length()) {
+    while (x.length() > y.length()) {x.shift();}};
+  if (x.length() < y.length()) {
+    while (x.length() < y.length()) {y.shift();}};
+};
