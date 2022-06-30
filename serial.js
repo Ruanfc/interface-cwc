@@ -1,21 +1,32 @@
-const SerialPort = require('serialport')
-const Readline = require('@serialport/parser-readline')
+const {SerialPort, ReadlineParser} = require('serialport')
 
-
+const { autoDetect } = require('@serialport/bindings-cpp');
+const Binding = autoDetect();
 var port;
 function connect(){
     port = new SerialPort({
-        path: '/dev/pts/1',
-        baudRate: document.getElementById("baudrate-selector").innerHTML,
+        path: '/dev/pts/2',
+        baudRate: parseInt(document.getElementById("baudrate-selector").value),
+    });
+    port.open(function (err) {
+    if (err) {
+        return console.log('Error opening port: ', err.message)
+        }
+    });
+
+    const parser = port.pipe(new ReadlineParser())
+    parser.on('data', function(dataInput){
+        console.log('Data:', (dataInput));
+        // Isso... ou talvez criar um evento
+        addData(parseInt(dataInput));
+
     });
 };
 function close()
 {
-    serialport.close(() => {
+    port.close(() => {
      connected = false
-     sh.success('disconnected.')
-     em.emit('disconnect')
-     resolve()
+        console.log("SerialPort closed")
     });
 }
 
@@ -23,11 +34,11 @@ function close()
 var serialSelect = document.getElementById('serial-selector');
 
 function checkPorts(){
-    SerialPort.SerialPort.list().then((ports) =>
+    Binding.list().then((ports) =>
     {
         // Remove every Children
-        while (ports.firstChild) {
-            ports.removeChild(ports.firstChild);}
+        while (serialSelect.firstChild) {
+            serialSelect.removeChild(serialSelect.firstChild);}
         console.log("All children removed");
         ports.forEach(function (port)
         {
@@ -80,24 +91,3 @@ runBtn.addEventListener("click", function(){
 // }
 
 var timerSerial = setInterval(checkPorts, 10000);
-
-//Todo:
-// serialport.on('data', function (data) {
-//   console.log('Data: ' + data);
-// });
-
-
-// const parser = port.pipe(new Readline());
-
-// const parser = new Readline();
-// port.pipe(parser);
-
-// parser.on('data', (line) =>
-//     {
-//         console.log(line);
-//         // window.graph1.incData(Number(line));
-//         // window.graph2.incData(100 - Number(line));
-//     });
-
-const parser = port.pipe(new Readline({ delimiter: '\r\n' }))
-parser.on('data', console.log)

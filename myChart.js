@@ -29,15 +29,22 @@
   );
 
 // Event listener
-window.addEventListener("myTestEvent", (value) => {
+window.addEventListener("myTestEvent", (value) => addData);
+
+// window.addEventListener("myTestEvent", (value) => {
+function addData(value)
+{
   let label_array = myChart.data.labels;
-  label_array.push(value.detail);
+  // label_array.push(value.detail);
+  label_array.push(value);
   myChart.data.labels = label_array.slice(1);
   let data_array = myChart.data.datasets[0].data;
-  data_array.push(value.detail);
+  // data_array.push(value.detail);
+  data_array.push(value);
   myChart.data.datasets[0].data = data_array.slice(1);
   myChart.update();
-});
+}
+// });
 
 
 // Save png
