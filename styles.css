@@ -126,6 +126,9 @@
     display: flex;
     justify-content: space-between;
 }
+/* .flex-horizontal>*{ */
+/*     vertical-align: middle; */
+/* } */
 
 input[type="text"]{
     min-width: 10vh;
@@ -149,7 +152,7 @@ img{
     object-fit: contain;
 }
 
-#number-input{
+.inline-input{
     max-width: 5em;
     min-width: 20px;
 }
