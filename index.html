@@ -3,6 +3,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" >
   <title>Interface CWC</title>
   <link rel="stylesheet" href="styles.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
   <script src="thirdParty/chart.js"></script>
   <script src="thirdParty/download.js"></script>
 </head>
@@ -12,7 +14,7 @@
 
   <button id="connectivity" class="accordion"> Connectivity </button>
   <div class="panel">
-    <div class= "serial-container" class = "flex-vertical">
+    <div class= "serial-container" class = "center-horizontal, flex-vertical">
       <div class="flex-horizontal">
       <p id="serial-string">Serial port:</p>
       <select id="serial-selector" required>
@@ -89,21 +91,52 @@
     </div>
   </div>
 
-  <button id="select-data" class="accordion"> Plots </button>
+  <button id="plot-section" class="accordion"> Plots </button>
   <div class="panel">
-    <div class = "flex-vertical">
+    <div id="plot-list" class="flex-vertical">
       <div class="flex-horizontal">
         <label> Plot label:</label>
-        <input id="plot-label" class="inline-input" name="plot-label" />
+        <div>
+        <input id="plot-label-input" class="inline-input" name="plot-label" />
+        <i id="plot-label-btn" class="fa fa-plus" aria hidden="true"></i>
+        </div>
       </div>
-        <button id="new-plot">Add new plot</button>
+        <!-- <button id="new-plot">Add new plot  </button> -->
+        <!-- lista feita com reactjs -->
+        <div id="menu-default" class="flex-vertical" style="max-width:200px">
+          <div class="flex-horizontal">
+            <label> Default plot</label>
+            <i class="fa fa-close" style="font-size:24;color:red"></i>
+          </div>
+          <div class="flex-horizontal">
+          <label> x range: </label>
+          <input type="number" name="" value="200" class="inline-input" />
+          </div>
+          <div class="flex-horizontal">
+          <label> y range: </label>
+            <div>
+            <input type="checkbox" name="" value="true" />
+            <label> Auto mode </label>
+            </div>
+          </div>
+          <div class="center-horizontal">
+            <input type="number" name="" value="0" class="inline-input"/>
+            <label> to </label>
+            <input type="number" name="" value="200" class="inline-input" />
+          </div>
+        </div>
+
+
+
     </div>
   </div>
+
 
       </div>
     <div id="dragger" class="bar"> </div>
     <div id="chart-container" class = "second-panel">
       <!-- <div id="placeholder">  </div> -->
+
       <canvas id="myChart"></canvas>
     </div>
   </div>

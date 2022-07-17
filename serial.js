@@ -5,7 +5,7 @@ const Binding = autoDetect();
 var port;
 function connect(){
     port = new SerialPort({
-        path: '/dev/pts/2',
+        path: '/dev/pts/3',
         baudRate: parseInt(document.getElementById("baudrate-selector").value),
     });
     port.open(function (err) {
@@ -18,7 +18,8 @@ function connect(){
     parser.on('data', function(dataInput){
         console.log('Data:', (dataInput));
         // Isso... ou talvez criar um evento
-        addData(parseInt(dataInput));
+        // var data_obj = JSON.parse(dataInput);
+        addData(parseInt(dataInput)); // look at myChart.js
 
     });
 };

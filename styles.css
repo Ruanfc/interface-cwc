@@ -45,6 +45,9 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    /*novo teste*/
+    display:flex;
+    flex-direction:column;
 }
 
 #placeholder{
@@ -143,8 +146,12 @@ input[type="text"]{
 /*     margin:auto; */
 /* } */
 
-#server-container{
-    max-width: 200px;
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.center-horizontal{
     margin: auto;
 }
 img{
@@ -157,14 +164,8 @@ img{
     min-width: 20px;
 }
 
-/* Button styling */
-/* .fcc-btn { */
-/*   background-color: #199319; */
-/*   color: white; */
-/*   padding: 15px 25px; */
-/*   text-decoration: none; */
-/* } */
-
-/* .fcc-btn:hover { */
-/*   background-color: #223094; */
-/* } */
+ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
